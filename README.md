@@ -1,54 +1,54 @@
 # 🧹 Dead Entry Cleaner (BETA)
 
-Ferramenta inteligente para remover entradas fantasmas da Aurora sem afetar seus jogos ou conteúdos reais.
+A smart utility for removing ghost entries from Aurora without affecting your games or legitimate content.
 
 ---
 
-## 📌 Sobre
+## 📌 About
 
-O **Dead Entry Cleaner** foi desenvolvido para limpar automaticamente o banco de dados da Aurora, removendo entradas inválidas que causam problemas como:
+**Dead Entry Cleaner** was developed to automatically clean Aurora's database by removing invalid entries that can cause issues such as:
 
-* Jogos que aparecem mas não abrem
-* Itens duplicados ou “fantasmas”
-* Biblioteca desorganizada ou bugada
+* Games that appear in the library but won't launch
+* Duplicate or "ghost" entries
+* A cluttered or corrupted game library
 
-A ferramenta atua diretamente no banco de dados (**ContentItems**), removendo apenas registros inválidos com base em múltiplas validações de segurança.
+The tool works directly on Aurora's **ContentItems** database, removing only invalid records based on multiple safety checks.
 
 ---
 
 ## 🖼️ Preview
 
-### Seleção do script
+### Script Selection
 
 <p align="center">
   <img src="assets/screenshot1.png" width="800"/>
 </p>
 
-### Aviso de segurança (checklist)
+### Safety Checklist
 
 <p align="center">
   <img src="assets/screenshot2.png" width="800"/>
 </p>
 
-### Seleção de armazenamento
+### Storage Device Selection
 
 <p align="center">
   <img src="assets/screenshot3.png" width="800"/>
 </p>
 
-### Confirmação do dispositivo
+### Device Confirmation
 
 <p align="center">
   <img src="assets/screenshot4.png" width="800"/>
 </p>
 
-### Confirmação de remoção
+### Removal Confirmation
 
 <p align="center">
   <img src="assets/screenshot5.png" width="800"/>
 </p>
 
-### Resultado final (resumo)
+### Final Results (Summary)
 
 <p align="center">
   <img src="assets/screenshot6.png" width="800"/>
@@ -56,124 +56,124 @@ A ferramenta atua diretamente no banco de dados (**ContentItems**), removendo ap
 
 ---
 
-## 🧠 Principais Funcionalidades
+## 🧠 Key Features
 
-* 🧹 Remoção de **entradas fantasmas (ContentItems inválidos)**
-* 🔍 Detecção inteligente baseada em:
+* 🧹 Removes **ghost entries (invalid ContentItems)**
+* 🔍 Smart detection based on:
 
-  * Diretório inexistente
-  * Executável ausente (.xex)
-  * Conteúdo GOD inválido
-  * Diretórios vazios
-* 🛡️ Sistema avançado de **proteção contra remoção acidental**
-* 👁️ Pré-visualização dos itens antes da remoção
-* 📊 Relatório final com:
+  * Missing directories
+  * Missing executable files (`.xex`)
+  * Invalid GOD content
+  * Empty directories
+* 🛡️ Advanced protection system to prevent accidental removal
+* 👁️ Preview detected entries before deletion
+* 📊 Displays a final report including:
 
-  * Itens analisados
-  * Removidos
-  * Falhas
+  * Entries analyzed
+  * Entries removed
+  * Failed operations
 
 ---
 
-## 🛡️ Segurança
+## 🛡️ Safety
 
-* ✔️ Não remove arquivos físicos do HD
-* ✔️ Não apaga jogos, DLCs ou Title Updates
-* ✔️ Protege automaticamente:
+* ✔️ Does **not** remove physical files from your storage device
+* ✔️ Does **not** delete games, DLCs, or Title Updates
+* ✔️ Automatically protects:
 
   * Aurora
   * XexMenu
   * DashLaunch
-  * Emuladores
-  * Homebrews
-  * Plugins e serviços
-* ✔️ Tratamento de erro com `pcall`
-* ✔️ Confirmação obrigatória antes da remoção
+  * Emulators
+  * Homebrew applications
+  * Plugins and system services
+* ✔️ Protected error handling using `pcall`
+* ✔️ User confirmation is required before any removal
 
-> ⚠️ **Importante:**
-> O script remove apenas registros do banco de dados, não arquivos reais.
-
----
-
-## 📦 Quando usar
-
-Utilize este script quando:
-
-* 🎮 Jogos aparecem mas não abrem
-* 👻 Existem entradas fantasmas na biblioteca
-* 🔁 Você moveu ou deletou jogos manualmente
-* 🧱 A biblioteca da Aurora está bugada
-* 📂 Existem itens duplicados ou inválidos
+> ⚠️ **Important:**
+> This script only removes records from Aurora's database. It does **not** delete any actual files.
 
 ---
 
-## 📂 Backup (Recomendado)
+## 📦 When to Use
 
-Antes de executar, faça backup do arquivo:
+Use this script when:
 
-```
+* 🎮 Games appear in Aurora but won't launch
+* 👻 Ghost entries are present in the library
+* 🔁 You have manually moved or deleted games
+* 🧱 Aurora's library has become corrupted or inconsistent
+* 📂 Duplicate or invalid entries are present
+
+---
+
+## 📂 Backup (Recommended)
+
+Before running the script, back up one of the following database files:
+
+```text
 Data\Databases\content.db
 ```
 
-ou
+or
 
-```
+```text
 User\Data\Databases\content.db
 ```
 
 ---
 
-## ⚙️ Como funciona
+## ⚙️ How It Works
 
-1. Você confirma o checklist de segurança
-2. Seleciona o dispositivo (limitação da Aurora)
-3. O script analisa todo o banco de dados
-4. Detecta entradas inválidas com base em múltiplas verificações
-5. Exibe uma prévia dos itens encontrados
-6. Remove apenas os itens confirmados
-7. Exibe um resumo final
-
----
-
-## 🔄 Recomendação
-
-Após a execução:
-
-* 🔁 Reinicie a Aurora (o script já oferece essa opção)
-* ⚙️ Mantenha o **scan automático ativado** para reconstruir a biblioteca corretamente
+1. Review and confirm the safety checklist.
+2. Select the storage device (required due to Aurora's limitations).
+3. The script scans the entire database.
+4. Invalid entries are identified through multiple validation checks.
+5. A preview of the detected entries is displayed.
+6. Only confirmed entries are removed.
+7. A final summary is presented.
 
 ---
 
-## ⚠️ Limitações
+## 🔄 Recommendation
 
-* Não remove conteúdos parcialmente válidos (prioriza segurança)
-* Pode ignorar entradas protegidas mesmo se estiverem quebradas
-* Dependente do sistema de scan da Aurora para reconstrução da biblioteca
+After the script completes:
 
----
-
-## 💡 Observações
-
-* Rodar o script novamente pode encontrar novos itens se o scan automático recriar entradas
-* O processo é seguro, mas não agressivo — evita remover qualquer coisa suspeita
-* A seleção de drive existe por limitação da Aurora, mas a limpeza é aplicada ao banco como um todo
+* 🔁 Restart Aurora (the script offers this option automatically).
+* ⚙️ Keep **automatic scanning enabled** so Aurora can rebuild the library correctly.
 
 ---
 
-## ⚠️ Aviso
+## ⚠️ Limitations
 
-Use esta ferramenta apenas quando necessário.
+* Partially valid content is intentionally preserved to prioritize safety.
+* Some protected entries may be skipped even if they appear to be broken.
+* Library reconstruction still depends on Aurora's scanning system.
 
-Alterações diretas no banco de dados podem causar inconsistências se utilizadas fora do cenário adequado.
+---
+
+## 💡 Notes
+
+* Running the script again may find additional invalid entries if Aurora's automatic scan recreates database records.
+* The cleaning process is designed to be safe rather than aggressive, avoiding the removal of anything suspicious.
+* Storage device selection exists due to Aurora's internal limitations, but the cleanup is applied to the database as a whole.
+
+---
+
+## ⚠️ Disclaimer
+
+Use this tool only when necessary.
+
+Direct modifications to Aurora's database may cause inconsistencies if performed outside its intended use.
 
 ---
 
 ## 📌 Status
 
-🟡 BETA — Em testes, mas já funcional e seguro para uso
+🟡 **BETA** — Currently under testing, but fully functional and safe for regular use.
 
 ---
 
-## 💬 Contribuição
+## 💬 Contributing
 
-Sugestões, melhorias e feedback são bem-vindos!
+Suggestions, improvements, bug reports, and feedback are always welcome!

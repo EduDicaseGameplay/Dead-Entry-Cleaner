@@ -1,227 +1,226 @@
 # 📄 FAQ – Dead Entry Cleaner (BETA)
 
-### ❓ O que esse script faz?
+### ❓ What does this script do?
 
-Ele remove **entradas fantasmas** da Aurora (itens que aparecem na biblioteca mas não existem mais no HD).
+It removes **ghost entries** from Aurora (items that still appear in the library but no longer exist on the storage device).
 
-👉 Importante:
+👉 **Important:**
 
-* NÃO apaga jogos
-* NÃO remove DLCs
-* NÃO mexe em Title Updates
-
----
-
-### ❓ O script apaga meus jogos?
-
-❌ Não.
-
-Ele apenas limpa o **banco de dados da Aurora (ContentItems)**.
-Os arquivos no HD continuam intactos.
+* It does **NOT** delete games.
+* It does **NOT** remove DLCs.
+* It does **NOT** modify Title Updates.
 
 ---
 
-### ❓ O que são “entradas fantasmas”?
+### ❓ Will this script delete my games?
 
-São jogos ou itens que aparecem na Aurora mas:
+❌ No.
 
-* A pasta foi deletada
-* O arquivo `.xex` não existe mais
-* O jogo foi movido de lugar
-* O conteúdo está incompleto ou corrompido
+It only cleans Aurora's **ContentItems database**.
+Your game files remain completely untouched.
 
 ---
 
-### ❓ Preciso fazer backup antes?
+### ❓ What are "ghost entries"?
 
-⚠️ Recomendado, mas não obrigatório.
+These are games or content that still appear in Aurora even though:
 
-Local comum do banco:
+* The folder has been deleted.
+* The `.xex` file no longer exists.
+* The game was moved to another location.
+* The content is incomplete or corrupted.
 
-```
+---
+
+### ❓ Should I create a backup first?
+
+⚠️ Recommended, but not required.
+
+Common database locations:
+
+```text
 Data\Databases\content.db
 User\Data\Databases\content.db
 ```
 
 ---
 
-### ❓ Por que alguns itens não são removidos?
+### ❓ Why are some entries not removed?
 
-Porque o script tem um sistema de **proteção avançada**, ele NÃO remove:
+The script includes an **advanced protection system** and intentionally does **NOT** remove:
 
 * Aurora
 * XexMenu
 * DashLaunch
-* Emuladores
-* Homebrews importantes
-* Plugins / Stealth / serviços
-* Jogos multi-disc
-* Conteúdos válidos
+* Emulators
+* Essential homebrew applications
+* Plugins, stealth services, and system utilities
+* Multi-disc games
+* Valid content
 
-👉 Isso é intencional pra evitar problemas no sistema.
-
----
-
-### ❓ O script pode remover algo importante?
-
-🛡️ Muito difícil.
-
-Ele só remove quando detecta com segurança que é inválido, por exemplo:
-
-* Pasta não existe
-* XEX não existe
-* GOD inválido
-* Diretório vazio
+👉 This behavior is intentional to help protect your system.
 
 ---
 
-### ❓ O que significa cada motivo (reason)?
+### ❓ Can the script remove something important?
 
-Alguns exemplos:
+🛡️ Extremely unlikely.
 
-* `DIRECTORY_VAZIO` → entrada sem caminho
-* `DIRETORIO_NAO_EXISTE` → pasta foi apagada
-* `XEX_INEXISTENTE` → jogo sem executável
-* `GOD_INVALIDO` → jogo GOD corrompido/incompleto
-* `FALLBACK_ENTRADA_FANTASMA` → entrada sem conteúdo válido
+It only removes entries that are safely identified as invalid, for example:
 
----
-
-### ❓ Por que ele ignora alguns jogos mesmo quebrados?
-
-Pode acontecer se:
-
-* Ainda existe algum arquivo na pasta
-* É multi-disc
-* Está protegido pelas regras internas
-* TitleID inválido ou suspeito
-
-👉 O foco é **segurança**, não sair apagando tudo.
+* Missing directory
+* Missing XEX executable
+* Invalid GOD package
+* Empty directory
 
 ---
 
-### ❓ Preciso fazer re-scan depois?
+### ❓ What does each removal reason mean?
 
-⚠️ Depende da sua configuração.
+Examples include:
 
-👉 O ideal é deixar o **scan automático ativado na Aurora**.
-Assim, após a limpeza + reinício, ela mesma reconstrói a biblioteca.
-
-Se não estiver automático:
-
-* Faça o scan manualmente depois
-
----
-
-### ❓ Preciso reiniciar a Aurora?
-
-✔️ Sim (recomendado)
-
-👉 O próprio script já pergunta no final.
+* `EMPTY_DIRECTORY` → Entry has no valid path.
+* `DIRECTORY_NOT_FOUND` → The folder no longer exists.
+* `XEX_NOT_FOUND` → Game executable is missing.
+* `INVALID_GOD` → Corrupted or incomplete GOD package.
+* `FALLBACK_GHOST_ENTRY` → Entry has no valid content.
 
 ---
 
-### ❓ Ele funciona em HD e USB?
+### ❓ Why does it ignore some broken games?
 
-✅ Sim.
+This may happen if:
 
-👉 A seleção de armazenamento existe por limitação da Aurora (caminhos e organização da base).
-Mas na prática, o processo de limpeza é geral no banco de dados.
+* The folder still contains some files.
+* The game is a multi-disc title.
+* The entry is protected by internal safety rules.
+* The Title ID is invalid or considered suspicious.
+
+👉 The priority is **safety**, not removing everything indiscriminately.
 
 ---
 
-### ❓ Ele limpa DLC ou TU bugado?
+### ❓ Do I need to rescan afterward?
 
-❌ Não diretamente.
+⚠️ It depends on your Aurora configuration.
 
-Ele não mexe em:
+👉 The recommended approach is to **enable automatic scanning** in Aurora.
+After cleaning and restarting, Aurora will rebuild the library automatically.
 
-* DLC
+If automatic scanning is disabled:
+
+* Perform a manual scan afterward.
+
+---
+
+### ❓ Do I need to restart Aurora?
+
+✔️ Yes (recommended).
+
+👉 The script will prompt you to restart when it finishes.
+
+---
+
+### ❓ Does it work with both HDD and USB devices?
+
+✅ Yes.
+
+👉 Storage selection exists due to Aurora's database organization and path handling.
+In practice, the cleaning process works across the selected database.
+
+---
+
+### ❓ Does it clean broken DLCs or Title Updates?
+
+❌ Not directly.
+
+The script does **not** modify:
+
+* DLCs
 * Title Updates
 
-Mas pode remover entradas inválidas relacionadas a eles.
+However, it may remove invalid database entries related to them.
 
 ---
 
-### ❓ O script mexe nos arquivos físicos?
+### ❓ Does the script modify physical files?
 
-❌ Não.
+❌ No.
 
-Ele executa apenas:
+It only executes:
 
 ```sql
 DELETE FROM ContentItems
 ```
 
-👉 Ou seja, só remove do banco da Aurora.
+👉 In other words, it only removes entries from Aurora's database.
 
 ---
 
-### ❓ Pode dar erro?
+### ❓ Can errors occur?
 
-Pode, mas é raro.
+They can, but they're uncommon.
 
-Exemplos:
+Examples include:
 
-* Falha ao ler banco
-* Falha ao remover item
+* Database read failure
+* Failed entry removal
 
-👉 O script contabiliza como falha, mas não danifica o sistema.
-
----
-
-### ❓ Posso rodar várias vezes?
-
-⚠️ Sim, mas com observação importante:
-
-* Se você rodar novamente sem reiniciar → provavelmente não vai encontrar nada
-* Se reiniciar e o scan automático estiver ativo → a Aurora pode recriar entradas e o script pode encontrar novas coisas
-
-👉 Ou seja: é normal aparecer algo de novo dependendo do scan.
+👉 These are counted as failures in the report and do not damage the system.
 
 ---
 
-### ❓ Esse script substitui o re-scan da Aurora?
+### ❓ Can I run it multiple times?
 
-❌ Não.
+⚠️ Yes, but keep this in mind:
 
-Ele limpa o banco, mas a reconstrução da biblioteca depende do scan.
+* Running it again **without restarting Aurora** will likely find nothing.
+* After restarting, if automatic scanning is enabled, Aurora may rebuild the library and new invalid entries may be detected.
 
-👉 Melhor prática:
-
-* Rodar o script
-* Reiniciar
-* Deixar o scan automático cuidar do resto
+👉 This behavior is normal and depends on how Aurora scans your content.
 
 ---
 
-### ❓ Quando devo usar esse script?
+### ❓ Does this script replace Aurora's rescan feature?
 
-Use quando:
+❌ No.
 
-* Jogos aparecem mas não abrem
-* Biblioteca está bugada
-* Itens duplicados ou fantasmas
-* Você moveu/deletou jogos manualmente
+It cleans the database, but rebuilding the library still depends on Aurora's scanning process.
+
+👉 Recommended workflow:
+
+* Run the script.
+* Restart Aurora.
+* Let Aurora's automatic scan rebuild the library.
 
 ---
 
-### ❓ Isso funciona em Xbox 360 original (sem desbloqueio)?
+### ❓ When should I use this script?
 
-❌ Não.
+Use it when:
 
-Esse script é feito para:
+* Games appear but won't launch.
+* Your library contains broken entries.
+* You see duplicate or ghost entries.
+* You manually moved or deleted games.
+
+---
+
+### ❓ Does it work on a stock Xbox 360 (without modifications)?
+
+❌ No.
+
+This script is designed for systems running:
 
 * RGH
 * JTAG
-* Exploit
+* Other compatible exploits
 * Aurora Dashboard
 
 ---
 
-## 💡 Dica Extra
+## 💡 Extra Tip
 
-Se sua Aurora vive bugando biblioteca, esse script resolve **a maioria dos casos sem precisar resetar tudo**.
+If Aurora's game library frequently becomes cluttered with broken or ghost entries, this script resolves **most cases without requiring a full database reset**.
 
-
-💡 Se ajudou, deixa o like e comenta qualquer dúvida 👊
+💡 **If this script helped you, please leave a like and feel free to share any questions or feedback!** 👊
