@@ -1,18 +1,16 @@
 # 🧹 Dead Entry Cleaner (BETA)
 
-A smart utility for removing ghost entries from Aurora without affecting your games or legitimate content.
+A smart utility that safely removes invalid Aurora database entries while preserving games, DLCs, Title Updates, homebrew, and other legitimate content.
 
 ---
 
 ## 📌 About
 
-**Dead Entry Cleaner** was developed to automatically clean Aurora's database by removing invalid entries that can cause issues such as:
+**Dead Entry Cleaner** was developed to automatically clean Aurora's database by identifying and removing invalid **ContentItems** that no longer point to valid content.
 
-* Games that appear in the library but won't launch
-* Duplicate or "ghost" entries
-* A cluttered or corrupted game library
+Unlike a simple database cleanup, the script performs multiple validation checks before considering an entry invalid. It analyzes directory existence, executable files, GOD containers, installed content structure, and several protected scenarios to ensure only genuine dead entries are removed.
 
-The tool works directly on Aurora's **ContentItems** database, removing only invalid records based on multiple safety checks.
+Every detected entry is presented to the user before deletion, allowing the cleanup process to remain transparent, safe, and fully controlled.
 
 ---
 
@@ -42,7 +40,7 @@ The tool works directly on Aurora's **ContentItems** database, removing only inv
   <img src="assets/screenshot4.png" width="800"/>
 </p>
 
-### Removal Confirmation
+### Invalid Entries Preview
 
 <p align="center">
   <img src="assets/screenshot5.png" width="800"/>
@@ -58,40 +56,53 @@ The tool works directly on Aurora's **ContentItems** database, removing only inv
 
 ## 🧠 Key Features
 
-* 🧹 Removes **ghost entries (invalid ContentItems)**
-* 🔍 Smart detection based on:
-
-  * Missing directories
-  * Missing executable files (`.xex`)
-  * Invalid GOD content
-  * Empty directories
-* 🛡️ Advanced protection system to prevent accidental removal
-* 👁️ Preview detected entries before deletion
-* 📊 Displays a final report including:
-
-  * Entries analyzed
-  * Entries removed
-  * Failed operations
+* 🧹 Removes invalid **ContentItems (ghost entries)** from Aurora's database.
+* 🔍 Smart detection using multiple validation methods.
+* 📁 Detects missing or inaccessible directories.
+* 🎮 Detects missing executable (`.xex`) files.
+* 💿 Detects invalid or incomplete GOD installations.
+* 📂 Detects empty or broken content directories.
+* 🛡️ Built-in protection for system applications and homebrew.
+* 👁️ Preview every detected entry before removal.
+* 📊 Displays a detailed cleanup report including:
+  * Entries analyzed.
+  * Invalid entries detected.
+  * Entries successfully removed.
+  * Failed operations.
+* 🔁 Optionally restart Aurora after the cleanup.
+* 🛡️ Protected database operations using `pcall`.
 
 ---
 
 ## 🛡️ Safety
 
-* ✔️ Does **not** remove physical files from your storage device
-* ✔️ Does **not** delete games, DLCs, or Title Updates
-* ✔️ Automatically protects:
+Dead Entry Cleaner was designed with safety as the highest priority.
 
-  * Aurora
-  * XexMenu
-  * DashLaunch
-  * Emulators
-  * Homebrew applications
-  * Plugins and system services
-* ✔️ Protected error handling using `pcall`
-* ✔️ User confirmation is required before any removal
+Every entry must pass multiple validation checks before being considered invalid.
+
+The script **never removes files from your storage device**. Only invalid Aurora database records are removed.
+
+Built-in protections include:
+
+* ✔️ Never deletes physical files.
+* ✔️ Never deletes games.
+* ✔️ Never deletes DLC.
+* ✔️ Never deletes Title Updates.
+* ✔️ Never deletes save data.
+* ✔️ Automatically protects Aurora.
+* ✔️ Automatically protects XexMenu.
+* ✔️ Automatically protects DashLaunch.
+* ✔️ Automatically protects emulators.
+* ✔️ Automatically protects homebrew applications.
+* ✔️ Automatically protects plugins and system services.
+* ✔️ Protected database operations using `pcall`.
+* ✔️ User confirmation is required before any removal.
 
 > ⚠️ **Important:**
-> This script only removes records from Aurora's database. It does **not** delete any actual files.
+>
+> This script only removes invalid **database records** from Aurora.
+>
+> No files stored on your HDD or USB device are ever modified or deleted.
 
 ---
 
@@ -99,11 +110,12 @@ The tool works directly on Aurora's **ContentItems** database, removing only inv
 
 Use this script when:
 
-* 🎮 Games appear in Aurora but won't launch
-* 👻 Ghost entries are present in the library
-* 🔁 You have manually moved or deleted games
-* 🧱 Aurora's library has become corrupted or inconsistent
-* 📂 Duplicate or invalid entries are present
+* 🎮 Games appear in Aurora but no longer exist.
+* 👻 Ghost entries remain after deleting games manually.
+* 🔁 Games were moved outside Aurora.
+* 📂 Broken or invalid library entries are displayed.
+* 🧹 You want to clean obsolete database entries safely.
+* ⚠️ Aurora's library becomes inconsistent after manually organizing your storage.
 
 ---
 
@@ -126,37 +138,41 @@ User\Data\Databases\content.db
 ## ⚙️ How It Works
 
 1. Review and confirm the safety checklist.
-2. Select the storage device (required due to Aurora's limitations).
-3. The script scans the entire database.
-4. Invalid entries are identified through multiple validation checks.
-5. A preview of the detected entries is displayed.
-6. Only confirmed entries are removed.
-7. A final summary is presented.
+2. Select the storage device (required due to Aurora's internal limitations).
+3. The script scans the Aurora database and analyzes every registered ContentItem.
+4. Each entry is validated using multiple safety checks to determine whether it still points to valid content.
+5. A preview of all detected invalid entries is displayed before any modification is made.
+6. After confirmation, only verified dead entries are removed from the database.
+7. A detailed cleanup summary is displayed.
+8. Optionally restart Aurora to immediately refresh the game library.
 
 ---
 
 ## 🔄 Recommendation
 
-After the script completes:
+After the cleanup is complete:
 
 * 🔁 Restart Aurora (the script offers this option automatically).
-* ⚙️ Keep **automatic scanning enabled** so Aurora can rebuild the library correctly.
+* 🔄 Allow Aurora to perform a new scan so any valid content can be detected again.
+* 💾 If you recently moved or restored games, verify your Scan Paths before running another cleanup.
 
 ---
 
 ## ⚠️ Limitations
 
-* Partially valid content is intentionally preserved to prioritize safety.
-* Some protected entries may be skipped even if they appear to be broken.
-* Library reconstruction still depends on Aurora's scanning system.
+* Entries with partially valid data are intentionally preserved to maximize safety.
+* Protected applications and system content are never removed, even if they appear to be invalid.
+* The script only removes invalid database records. It does not rebuild Aurora's database or recreate missing entries.
+* Aurora's library is refreshed only after restarting or performing a new scan.
 
 ---
 
 ## 💡 Notes
 
-* Running the script again may find additional invalid entries if Aurora's automatic scan recreates database records.
-* The cleaning process is designed to be safe rather than aggressive, avoiding the removal of anything suspicious.
-* Storage device selection exists due to Aurora's internal limitations, but the cleanup is applied to the database as a whole.
+* Running the script again after Aurora completes a new scan may detect additional invalid entries created by previous database inconsistencies.
+* The cleanup process prioritizes safety over aggressive removal, avoiding false positives whenever possible.
+* Storage device selection exists because Aurora stores content references relative to the selected device, making device validation necessary before analyzing database entries.
+* If no invalid entries are found, the script will simply report that the database is already clean.
 
 ---
 
@@ -164,16 +180,22 @@ After the script completes:
 
 Use this tool only when necessary.
 
-Direct modifications to Aurora's database may cause inconsistencies if performed outside its intended use.
+Although every removal is validated through multiple safety checks, this script directly modifies Aurora's database. It is strongly recommended to create a backup before performing any cleanup.
+
+Dead Entry Cleaner only removes invalid **ContentItems** from Aurora's database. No games, DLCs, Title Updates, save data, or other files stored on your device are ever modified or deleted.
 
 ---
 
 ## 📌 Status
 
-🟡 **BETA** — Currently under testing, but fully functional and safe for regular use.
+🟡 **BETA** — Stable and safe for regular use, with continuous improvements planned for future releases.
 
 ---
 
 ## 💬 Contributing
 
 Suggestions, improvements, bug reports, and feedback are always welcome!
+
+If you encounter an issue or have ideas to improve **Dead Entry Cleaner**, feel free to open an **Issue** or submit a **Pull Request**.
+
+Community contributions help improve the project and benefit the entire Aurora community.
